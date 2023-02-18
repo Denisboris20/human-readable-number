@@ -1,6 +1,5 @@
-function toReadable(number) {
-    let dozens;
-    let words = {
+module.exports = function toReadable(number) {
+    const singleNumbers = {
         0: "zero",
         1: "one",
         2: "two",
@@ -11,6 +10,8 @@ function toReadable(number) {
         7: "seven",
         8: "eight",
         9: "nine",
+    };
+    const belowTwentyNumbers = {
         10: "ten",
         11: "eleven",
         12: "twelve",
@@ -19,242 +20,44 @@ function toReadable(number) {
         15: "fifteen",
         16: "sixteen",
         17: "seventeen",
-        19: "nineteen",
         18: "eighteen",
+        19: "nineteen",
     };
-    if (20 <= number) {
-        dozens = {
-            20: "twenty",
-            30: "thirty",
-            40: "forty",
-            50: "fifty",
-            60: "sixty",
-            70: "seventy",
-            80: "eighty",
-            90: "ninety",
-        };
-        const num = String(number).split("");
-        if (num.length === 2)
-            if (number % 10 == 0) {
-                return dozens[number];
-            } else {
-                if (num[0] == 2) {
-                    return "twenty" + " " + words[num[1]];
-                }
-                if (num[0] == 3) {
-                    return "thirty" + " " + words[num[1]];
-                }
-                if (num[0] == 4) {
-                    return "forty" + " " + words[num[1]];
-                }
-                if (num[0] == 5) {
-                    return "fifty" + " " + words[num[1]];
-                }
-                if (num[0] == 6) {
-                    return "sixty" + " " + words[num[1]];
-                }
-                if (num[0] == 7) {
-                    return "seventy" + " " + words[num[1]];
-                }
-                if (num[0] == 8) {
-                    return "eighty" + " " + words[num[1]];
-                }
-                if (num[0] == 9) {
-                    return "ninety" + " " + words[num[1]];
-                }
-            }
-        if (num.length === 3)
-            if (number % 100 != 0) {
-                if (number % 10 === 0)
-                    if (num[1] != 2) {
-                        if (num[1] != 3) {
-                            if (num[1] == 4) {
-                                return (
-                                    words[parseInt(num[0])] +
-                                    " hundred " +
-                                    dozens[40]
-                                );
-                            }
-                            if (num[1] == 5) {
-                                return (
-                                    words[parseInt(num[0])] +
-                                    " hundred " +
-                                    dozens[50]
-                                );
-                            }
-                            if (num[1] == 6) {
-                                return (
-                                    words[parseInt(num[0])] +
-                                    " hundred " +
-                                    dozens[60]
-                                );
-                            }
-                            if (num[1] == 7) {
-                                return (
-                                    words[parseInt(num[0])] +
-                                    " hundred " +
-                                    dozens[70]
-                                );
-                            }
-                            if (num[1] == 8) {
-                                return (
-                                    words[parseInt(num[0])] +
-                                    " hundred " +
-                                    dozens[80]
-                                );
-                            }
-                            if (num[1] == 9) {
-                                return (
-                                    words[parseInt(num[0])] +
-                                    " hundred " +
-                                    dozens[90]
-                                );
-                            }
-                        } else {
-                            return (
-                                words[parseInt(num[0])] +
-                                " hundred " +
-                                dozens[30]
-                            );
-                        }
-                    } else {
-                        return (
-                            words[parseInt(num[0])] + " hundred " + dozens[20]
-                        );
-                    }
-                if (num[1] == 0) {
-                    return (
-                        words[parseInt(num[0])] + " hundred " + words[num[2]]
-                    );
-                }
-                if (num[1] == 1) {
-                    if (num[2] == 0) {
-                        return (
-                            words[parseInt(num[0])] + " hundred " + words[10]
-                        );
-                    }
-                    if (num[2] == 1) {
-                        return (
-                            words[parseInt(num[0])] + " hundred " + words[11]
-                        );
-                    }
-                    if (num[2] == 2) {
-                        return (
-                            words[parseInt(num[0])] + " hundred " + words[12]
-                        );
-                    }
-                    if (num[2] == 3) {
-                        return (
-                            words[parseInt(num[0])] + " hundred " + words[13]
-                        );
-                    }
-                    if (num[2] == 4) {
-                        return (
-                            words[parseInt(num[0])] + " hundred " + words[14]
-                        );
-                    }
-                    if (num[2] == 5) {
-                        return (
-                            words[parseInt(num[0])] + " hundred " + words[15]
-                        );
-                    }
-                    if (num[2] == 6) {
-                        return (
-                            words[parseInt(num[0])] + " hundred " + words[16]
-                        );
-                    }
-                    if (num[2] == 7) {
-                        return (
-                            words[parseInt(num[0])] + " hundred " + words[17]
-                        );
-                    }
-                    if (num[2] == 8) {
-                        return (
-                            words[parseInt(num[0])] + " hundred " + words[18]
-                        );
-                    }
-                    if (num[2] == 9) {
-                        return (
-                            words[parseInt(num[0])] + " hundred " + words[19]
-                        );
-                    }
-                }
-                if (num[1] == 2) {
-                    return (
-                        words[parseInt(num[0])] +
-                        " hundred " +
-                        dozens[20] +
-                        " " +
-                        words[num[2]]
-                    );
-                }
-                if (num[1] == 3) {
-                    return (
-                        words[parseInt(num[0])] +
-                        " hundred " +
-                        dozens[30] +
-                        " " +
-                        words[num[2]]
-                    );
-                }
-                if (num[1] == 4) {
-                    return (
-                        words[parseInt(num[0])] +
-                        " hundred " +
-                        dozens[40] +
-                        " " +
-                        words[num[2]]
-                    );
-                }
-                if (num[1] == 5) {
-                    return (
-                        words[parseInt(num[0])] +
-                        " hundred " +
-                        dozens[50] +
-                        " " +
-                        words[num[2]]
-                    );
-                }
-                if (num[1] == 6) {
-                    return (
-                        words[parseInt(num[0])] +
-                        " hundred " +
-                        dozens[60] +
-                        " " +
-                        words[num[2]]
-                    );
-                }
-                if (num[1] == 7) {
-                    return (
-                        words[parseInt(num[0])] +
-                        " hundred " +
-                        dozens[70] +
-                        " " +
-                        words[num[2]]
-                    );
-                }
-                if (num[1] == 8) {
-                    return (
-                        words[parseInt(num[0])] +
-                        " hundred " +
-                        dozens[80] +
-                        " " +
-                        words[num[2]]
-                    );
-                }
-                if (num[1] == 9) {
-                    return (
-                        words[parseInt(num[0])] +
-                        " hundred " +
-                        dozens[90] +
-                        " " +
-                        words[num[2]]
-                    );
-                }
-            } else {
-                return words[parseInt(num[0])] + " hundred";
-            }
+    const dozensNumbers = {
+        20: "twenty",
+        30: "thirty",
+        40: "forty",
+        50: "fifty",
+        60: "sixty",
+        70: "seventy",
+        80: "eighty",
+        90: "ninety",
+    };
+    let res = "";
+    let num = number;
+    if (num < 10) {
+        return singleNumbers[num];
+    } else if (num >= 10 && num < 20) {
+        return belowTwentyNumbers[num];
     } else {
-        return words[number];
+        while (num > 0) {
+            if (num / 100 >= 1) {
+                res += singleNumbers[Math.floor(num / 100)] + " hundred ";
+                num = num - Math.floor(num / 100) * 100;
+                console.log(num);
+            } else if (num / 10 >= 2) {
+                res += dozensNumbers[num - (num % 10)] + " ";
+                num = num % 10;
+                console.log(num);
+            } else if (num / 10 >= 1 && num / 10 < 2) {
+                res += belowTwentyNumbers[num] + " ";
+                num = 0;
+            } else {
+                res += singleNumbers[Math.floor(num)];
+                num = 0;
+            }
+        }
     }
-}
+    console.log(res);
+    return res.trim();
+};
